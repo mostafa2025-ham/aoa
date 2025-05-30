@@ -207,15 +207,15 @@
     </div>
     <div class="balance-values">
       <div class="balance-box">
-        <h3>EGP0.00</h3>
+        <h3 id="balanceAmount">EGP0.00</h3>
         <p>الرصيد</p>
       </div>
       <div class="balance-box">
-        <h3>EGP0.00</h3>
+        <h3 id="dailyIncome">EGP0.00</h3>
         <p>الدخل اليومي</p>
       </div>
       <div class="balance-box">
-        <h3>EGP0.00</h3>
+        <h3 id="totalIncome">EGP0.00</h3>
         <p>مجموع الدخل</p>
       </div>
     </div>
@@ -262,23 +262,11 @@
 
     function logout() {
       localStorage.removeItem("loggedIn");
-      localStorage.removeItem("balance"); // اختياري لمسح الرصيد عند تسجيل الخروج
+      // ممكن تمسح الرصيد عند الخروج لو عايز:
+      // localStorage.removeItem("balance");
       window.location.href = "login.html";
     }
 
-    // تحديث عرض الرصيد من localStorage
+    // دالة لتحديث الرصيد في الصفحة
     function updateBalance() {
-      const balance = localStorage.getItem("balance") || "0.00";
-      const balanceElements = document.querySelectorAll(".balance-box h3");
-      if (balanceElements.length >= 3) {
-        balanceElements[0].textContent = `EGP${parseFloat(balance).toFixed(2)}`;
-        balanceElements[1].textContent = `EGP${parseFloat(balance).toFixed(2)}`;
-        balanceElements[2].textContent = `EGP${parseFloat(balance).toFixed(2)}`;
-      }
-    }
-
-    updateBalance();
-  </script>
-
-</body>
-</html>
+      const balance = parseFloat(localStorage.getItem("balance")) || 0;
