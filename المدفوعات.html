@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>المدفوعات</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+      text-align: center;
+      padding: 20px;
+    }
+    .container {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      max-width: 400px;
+      margin: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      margin-bottom: 15px;
+    }
+    .info {
+      margin: 15px 0;
+      font-size: 18px;
+      color: #333;
+    }
+    #timer {
+      margin-top: 15px;
+      font-size: 20px;
+      color: red;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>ملخص الدفع</h2>
+
+  <p class="info" id="showPhone"></p>
+  <p class="info" id="showRandom"></p>
+  <p class="info" id="showAmount"></p>
+
+  <div id="timer"></div>
+</div>
+
+<script>
+  const showPhone = document.getElementById('showPhone');
+  const showRandom = document.getElementById('showRandom');
+  const showAmount = document.getElementById('showAmount');
+  const timerDiv = document.getElementById('timer');
+
+  // جلب البيانات من localStorage
+  const phone = localStorage.getItem('paymentPhone');
+  const random = localStorage.getItem('paymentRandom');
+  const amount = localStorage.getItem('paymentAmount');
+  const expireTime = localStorage.getItem('paymentExpireTime');
+
+  if (!phone || !random || !amount || !expireTime) {
+    // لو البيانات مش موجودة نوجه المستخدم للصفحة الأولى
+    alert('لا توجد بيانات دفع محفوظة، يرجى البدء من جديد.');
+    window.location.href = "ادفع.html";
+  } else {
+    showPhone.textContent = "رقم المحفظة المدخل: " + phone;
+    showRandom.textContent = "رقم الدفع: " + random;
+    showAmount.textContent = "المبلغ المدفوع: " + amount + " جنيه";
+
+    // بدء العد التنازلي بناءً على الوقت المخزن
+    function startCountdown() {
+      const interval = setInterval(() => {
+        const now = Date.now();
+        const diff = Math.floor((expireTime - now) / 1000);
+
+        if (diff <= 0) {
+          clearInterval(interval);
+          timerDiv.textContent = "⏰ انتهى الوقت!";
+        } else {
+          const min = Math.floor(diff / 60).toString().padStart(2, '0');
+          const sec = (diff % 60).toString().padStart(2, '0');
+          timerDiv.textContent = `⏳ الوقت المتبقي: ${min}:${sec}`;
+        }
+      }, 1000);
+    }
+
+    startCountdown();
+  }
+</script>
+
+</body>
+</html>

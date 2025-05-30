@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/script.js" defer></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>المنتجات</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #fff;
+      direction: rtl;
+      padding-bottom: 70px; /* مساحة لشريط التنقل */
+    }
+
+    .header {
+      background-color: #0e0e0e;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      font-size: 20px;
+    }
+
+    .product-header {
+      width: 100%;
+    }
+
+    .tabs {
+      display: flex;
+      justify-content: center;
+      background-color: #f2f2f2;
+    }
+
+    .tab {
+      flex: 1;
+      text-align: center;
+      padding: 10px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .tab.active {
+      background-color: #00c853;
+      color: white;
+    }
+
+    .product {
+      display: flex;
+      align-items: center;
+      padding: 15px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .product img {
+      width: 80px;
+      height: auto;
+      margin-left: 15px;
+    }
+
+    .product-info {
+      flex: 1;
+    }
+
+    .product-info h3 {
+      margin: 0 0 5px;
+    }
+
+    .product-info p {
+      margin: 2px 0;
+      color: #444;
+    }
+
+    .buy-button {
+      background-color: #00c853;
+      color: white;
+      padding: 8px 15px;
+      border: none;
+      border-radius: 15px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      height: 60px;
+      background-color: #fff;
+      border-top: 1px solid #ccc;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .nav-item {
+      text-align: center;
+      color: #888;
+      font-size: 12px;
+      text-decoration: none;
+    }
+
+    .nav-item i {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 3px;
+    }
+
+    .nav-item.active {
+      color: #00c853;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">المنتجات</div>
+  <img src="images/vip-header.jpg" alt="المنتجات" class="product-header"/>
+
+  <div class="tabs">
+    <div class="tab active">أجهزة التعدين العادية</div>
+    <div class="tab">طلباتي</div>
+  </div>
+
+  <!-- المنتجات -->
+  <div class="product">
+    <img src="images/device.png" alt="onsemi 1">
+    <div class="product-info">
+      <h3>onsemi 1</h3>
+      <p>السعر: EGP50.00</p>
+      <p>المدة: 10 أيام</p>
+      <p>الدخل اليومي: EGP7.00</p>
+      <p>إجمالي الدخل: EGP70.00</p>
+      <p style="color: #00c853">دخل يومي ثابت - إعادة استثمار</p>
+    </div>
+    <button class="buy-button">شراء</button>
+  </div>
+  <!-- المنتجات -->
+  <div class="product">
+    <img src="images/device.png" alt="onsemi 1">
+    <div class="product-info">
+      <h3>onsemi 1</h3>
+      <p>السعر: EGP50.00</p>
+      <p>المدة: 10 أيام</p>
+      <p>الدخل اليومي: EGP7.00</p>
+      <p>إجمالي الدخل: EGP70.00</p>
+      <p style="color: #00c853">دخل يومي ثابت - إعادة استثمار</p>
+    </div>
+    <button class="buy-button">شراء</button>
+  </div>
+
+  <!-- المنتجات -->
+  <div class="product">
+    <img src="images/device.png" alt="onsemi 1">
+    <div class="product-info">
+      <h3>onsemi 1</h3>
+      <p>السعر:EGP50.00</p>
+      <p>المدة: 10 أيام</p>
+      <p>الدخل اليومي: EGP7.00</p>
+      <p>إجمالي الدخل: EGP70.00</p>
+      <p style="color: #00c853">دخل يومي ثابت - إعادة استثمار</p>
+    </div>
+    <button class="buy-button">شراء</button>
+  </div>
+  <!-- المنتجات -->
+  <div class="product">
+    <img src="images/device.png" alt="onsemi 1">
+    <div class="product-info">
+      <h3>onsemi 1</h3>
+      <p>السعر: EGP50.00</p>
+      <p>المدة: 10 أيام</p>
+      <p>الدخل اليومي: EGP7.00</p>
+      <p>إجمالي الدخل: EGP70.00</p>
+      <p style="color: #00c853">دخل يومي ثابت - إعادة استثمار</p>
+    </div>
+    <button class="buy-button">شراء</button>
+  </div>
+  <!-- المنتجات -->
+  <div class="product">
+    <img src="images/device.png" alt="onsemi 1">
+    <div class="product-info">
+      <h3>onsemi 1</h3>
+      <p>السعر: EGP50.00</p>
+      <p>المدة: 10 أيام</p>
+      <p>الدخل اليومي: EGP7.00</p>
+      <p>إجمالي الدخل: EGP70.00</p>
+      <p style="color: #00c853">دخل يومي ثابت - إعادة استثمار</p>
+    </div>
+    <button class="buy-button">شراء</button>
+  </div>
+  <!-- المنتجات -->
+  <div class="product">
+    <img src="images/device.png" alt="onsemi 1">
+    <div class="product-info">
+      <h3>onsemi 1</h3>
+      <p>السعر: EGP50.00</p>
+      <p>المدة: 10 أيام</p>
+      <p>الدخل اليومي: EGP7.00</p>
+      <p>إجمالي الدخل: EGP70.00</p>
+      <p style="color: #00c853">دخل يومي ثابت - إعادة استثمار</p>
+    </div>
+    <button class="buy-button">شراء</button>
+  </div>
+
+  <!-- باقي المنتجات كما هي ... -->
+
+  <!-- شريط التنقل السفلي -->
+  <div class="bottom-nav">
+    <a href="dashboard.html" class="nav-item">
+      <i class="fas fa-home"></i>
+      الرئيسية
+    </a>
+    <a href="vip.html" class="nav-item active">
+      <i class="fas fa-th-large"></i>
+      المنتجات
+    </a>
+    <a href="my-team.html" class="nav-item">
+      <i class="fas fa-star"></i>
+      الفريق
+    </a>
+    <a href="my-profile.html" class="nav-item">
+      <i class="fas fa-user"></i>
+      حسابي
+    </a>
+  </div>
+
+</body>
+</html>

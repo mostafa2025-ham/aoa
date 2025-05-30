@@ -1,0 +1,73 @@
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom, #00c853, #b2fab4);
+  text-align: center;
+  padding: 40px 20px;
+  direction: rtl;
+  margin: 0;
+}
+
+.logo {
+  margin-bottom: 20px;
+}
+
+.logo img {
+  width: 120px;
+  max-width: 100%;
+}
+
+h2 {
+  color: white;
+  margin-bottom: 25px;
+}
+
+.input-group {
+  position: relative;
+  margin: 15px 0;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px 10px 10px 40px; /* مساحة يسار للأيقونة */
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 14px;
+  text-align: right;
+  box-sizing: border-box;
+}
+
+.input-group i {
+  position: absolute;
+  right: 10px; /* لأن الاتجاه RTL */
+  top: 50%;
+  transform: translateY(-50%);
+  color: #00c853;
+  pointer-events: none;
+}
+
+button {
+  background-color: #00c853;
+  color: white;
+  padding: 12px;
+  width: 100%;
+  max-width: 400px;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.register-link {
+  margin-top: 15px;
+  font-size: 14px;
+  color: white;
+}
+
+.register-link a {
+  color: white;
+  text-decoration: underline;
+}

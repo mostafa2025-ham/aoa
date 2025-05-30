@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>لوحة التحكم</title>
+  <style>
+    body { font-family: Arial; background: #f4f4f4; padding: 20px; direction: rtl; }
+    h2 { text-align: center; }
+    table { width: 100%; border-collapse: collapse; background: white; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+    input, button { padding: 5px; margin: 2px; }
+    #adminArea { display: none; }
+    #searchInput { width: 100%; padding: 10px; margin-bottom: 10px; }
+    .section { background: white; padding: 15px; margin-top: 20px; border: 1px solid #ccc; }
+  </style>
+</head>
+<body>
+
+<h2>تسجيل دخول المدير</h2>
+<div id="login">
+  <input type="password" id="adminPass" placeholder="كلمة مرور المدير">
+  <button onclick="checkAdmin()">دخول</button>
+</div>
+
+<div id="adminArea">
+  <h2>لوحة التحكم في المستخدمين</h2>
+  <input type="text" id="searchInput" oninput="filterUsers()" placeholder="ابحث برقم الهاتف...">
+  <table>
+    <thead>
+      <tr>
+        <th>رقم الهاتف</th>
+        <th>الرصيد</th>
+        <th>كلمة المرور</th>
+        <th>تعديل</th>
+        <th>حذف</th>
+      </tr>
+    </thead>
+    <tbody id="usersTable"></tbody>
+  </table>
+
+  <div class="section">
+    <h2>إدارة أسعار الباقات</h2>
+    <div id="plans">
+      <div><label>سعر VIP 1:</label> <input type="number" id="vip1" value="0"></div>
+      <div><label>سعر VIP 2:</label> <input type="number" id="vip2" value="0"></div>
+      <div><label>سعر VIP 3:</label> <input type="number" id="vip3" value="0"></div>
+      <div><label>سعر VIP 4:</label> <input type="number" id="vip4" value="0"></div>
+      <div><label>سعر VIP 5:</label> <input type="number" id="vip5" value="0"></div>
+      <div><label>سعر VIP 6:</label> <input type="number" id="vip6" value="0"></div>
+    </div>
+    <button onclick="savePlans()">حفظ الأسعار</button>
+  </div>
+</div>
+
+<script>
+const adminPassword = "302591";
+
+function checkAdmin() {
+  const input = document.getElementById('adminPass').value;
+  if (input === adminPassword) {
+    document.getElementById('login').style.display = 'none';
+    document.getElementById('adminArea').style.display = 'block';
+    loadUsers();
+    loadPlans();
+  } else {
+    alert("كلمة مرور غير صحيحة!");
+  }
+}
+
+function loadUsers() {
+  const table = document.getElementById('usersTable');
+  table.innerHTML = '';
+  for (let key in localStorage) {
+    if (key.startsWith("user_")) {
+      const user = JSON.parse(localStorage.getItem(key));
+      const row = document.createElement('tr');
+      row.setAttribute("data-phone", user.phone);
+      row.innerHTML = `
+        <td>${user.phone}</td>
+        <td><input type="number" value="${user.balance}" id="bal_${user.phone}"></td>
+        <td><input type="text" value="${user.password}" id="pass_${user.phone}"></td>
+        <td><button onclick="updateUser('${user.phone}')">تحديث</button></td>
+        <td><button onclick="deleteUser('${user.phone}')">حذف</button></td>
+      `;
+      table.appendChild(row);
+    }
+  }
+}
+
+function filterUsers() {
+  const term = document.getElementById("searchInput").value;
+  const rows = document.querySelectorAll("#usersTable tr");
+  rows.forEach(row => {
+    const phone = row.getAttribute("data-phone");
+    row.style.display = phone.includes(term) ? '' : 'none';
+  });
+}
+
+function updateUser(phone) {
+  const user = JSON.parse(localStorage.getItem("user_" + phone));
+  user.balance = parseFloat(document.getElementById("bal_" + phone).value);
+  user.password = document.getElementById("pass_" + phone).value;
+  localStorage.setItem("user_" + phone, JSON.stringify(user));
+  alert("تم التحديث بنجاح");
+}
+
+function deleteUser(phone) {
+  if (confirm("هل أنت متأكد من حذف المستخدم؟")) {
+    localStorage.removeItem("user_" + phone);
+    loadUsers();
+  }
+}
+
+function savePlans() {
+  for (let i = 1; i <= 6; i++) {
+    const price = document.getElementById("vip" + i).value;
+    localStorage.setItem("vip_price_" + i, price);
+  }
+  alert("تم حفظ أسعار الباقات");
+}
+
+function loadPlans() {
+  for (let i = 1; i <= 6; i++) {
+    const price = localStorage.getItem("vip_price_" + i) || 0;
+    document.getElementById("vip" + i).value = price;
+  }
+}
+</script>
+
+</body>
+</html>
